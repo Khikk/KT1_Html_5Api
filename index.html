@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="dataForm">
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key"><br><br>
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value"><br><br>
+        <button type="button" onclick="saveData()">Save</button>
+        <button type="button" onclick="clearStorage()">Clear Storage</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data from Local Storage will be displayed here -->
+        </tbody>
+    </table>
+
+    <script>
+        function saveData() {
+            const key = document.getElementById('key').value;
+            const value = document.getElementById('value').value;
+
+            if (key && value) {
+                localStorage.setItem(key, value);
+                alert('Data saved to localStorage.');
+                updateTable();
+            } else {
+                alert('Please enter both key and value.');
+            }
+        }
+
+        function clearStorage() {
+            const confirmation = confirm('Are you sure you want to clear the localStorage?');
+            if (confirmation) {
+                localStorage.clear();
+                alert('LocalStorage cleared.');
+                updateTable();
+            }
+        }
+
+        function getStorage() {
+            const currentStorage = localStorage;
+            updateTable();
+        }
+
+        function updateTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${i + 1}</td>
+                    <td>${key}</td>
+                    <td>${value}</td>
+                    <td><span onclick="deleteItem('${key}')">X</span></td>
+                `;
+                tableBody.appendChild(newRow);
+            }
+        }
+
+        function deleteItem(key) {
+            const confirmation = confirm('Are you sure you want to delete this entry?');
+
+            if (confirmation) {
+                localStorage.removeItem(key);
+                updateTable();
+            }
+        }
+
+        window.onload = function () {
+            getStorage();
+        };
+    </script>
+</body>
+</html>

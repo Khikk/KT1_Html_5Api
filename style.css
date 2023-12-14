@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #29882c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background-color: rgb(6, 99, 6);
+    color: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #29882c;
+}
+
+span {
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}
